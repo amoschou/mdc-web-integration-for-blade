@@ -1,6 +1,9 @@
 # Ignore everything:
 *
 
-# Except for the themes directories:
+# Except these items
 !components/*
 !docs/*
+LICENSE
+README.md
+
