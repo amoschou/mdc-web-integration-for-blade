@@ -5,14 +5,42 @@ This repository provides a set of [anonymous components for Blade](https://larav
 
 * [`banner`](https://github.com/amoschou/mdc-web-integration-for-blade/blob/main/docs/banner.md)
 * [`button`](https://github.com/amoschou/mdc-web-integration-for-blade/blob/main/docs/button.md)
+* `card`
 * [`checkbox`](https://github.com/amoschou/mdc-web-integration-for-blade/blob/main/docs/checkbox.md)
+* `chips`
 * [`circular-progress`](https://github.com/amoschou/mdc-web-integration-for-blade/blob/main/docs/circular-progress.md)
+* `data-table`
+* `dialog`
+* `drawer`
+* `elevation`
+* `fab`
+* `floating-label`
 * [`form-field`](https://github.com/amoschou/mdc-web-integration-for-blade/blob/main/docs/form-field.md)
 * [`icon-button`](https://github.com/amoschou/mdc-web-integration-for-blade/blob/main/docs/icon-button.md)
+* `image-list`
+* `layout-grid`
+* `line-ripple`
 * [`linear-progress`](https://github.com/amoschou/mdc-web-integration-for-blade/blob/main/docs/linear-progress.md)
+* `list`
+* `menu-surface`
+* `menu`
+* `notched-outline`
 * [`radio`](https://github.com/amoschou/mdc-web-integration-for-blade/blob/main/docs/radio.md)
+* `ripple`
+* `segmented-button`
+* `select`
 * [`slider`](https://github.com/amoschou/mdc-web-integration-for-blade/blob/main/docs/slider.md)
+* `snackbar`
 * [`switch`](https://github.com/amoschou/mdc-web-integration-for-blade/blob/main/docs/switch.md)
+* `tab-bar`
+* `tab-indicator`
+* `tab-scroller`
+* `tab`
+* `textfield`
+* `tooltip`
+* `top-app-bar`
+* `touch-target`
+* `typography`
 
 Components can be used such as:
 ```html
