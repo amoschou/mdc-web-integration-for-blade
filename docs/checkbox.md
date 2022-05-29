@@ -13,8 +13,7 @@
     no-focus-ring
     name=""
     value=""
->
-</x-button>
+/>
 ```
 
 ## Examples
