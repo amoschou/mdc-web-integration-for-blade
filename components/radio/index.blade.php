@@ -88,11 +88,11 @@
 
 @push('post-mdc-auto-init-js')
     @if ($hasJsHandle)
-        const {{ $jsHandle }} = document.getElementById('{{ $id }}').MDCRadio;
+        const {{ $jsHandle }} = document.getElementById('{{ $id }}-radio').MDCRadio;
     @endif
-    document.getElementById('{{ $id }}').MDCRadio.checked = {{ $isChecked ? 'true' : 'false' }};
-    document.getElementById('{{ $id }}').MDCRadio.disabled = {{ $isDisabled ? 'true' : 'false' }};
-    @if ($hasValue) document.getElementById('{{ $id }}').MDCRadio.value = {{ $value }}; @endif
+    document.getElementById('{{ $id }}-radio').MDCRadio.checked = {{ $isChecked ? 'true' : 'false' }};
+    document.getElementById('{{ $id }}-radio').MDCRadio.disabled = {{ $isDisabled ? 'true' : 'false' }};
+    @if ($hasValue) document.getElementById('{{ $id }}-radio').MDCRadio.value = '{{ $value }}'; @endif
 @endpush
 
 
