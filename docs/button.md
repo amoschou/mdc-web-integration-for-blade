@@ -2,7 +2,7 @@
 
 ## Use
 
-```
+```html
 <x-m2.button
     label="Send"
     icon="send"
@@ -24,18 +24,13 @@
 
 ## Examples
 
-```
-<x-m2.button label="Text button"></x-m2.button>
-
-<x-m2.button label="Text button plus icon" icon="bookmark"></x-m2.button>
-
-<x-m2.button label="Outlined button" outlined></x-m2.button>
-
-<x-m2.button label="Outlined button plus icon" icon="bookmark"></x-m2.button>
-
-<x-m2.button label="Contained button" raised></x-m2.button>
-
-<x-m2.button label="Contained button plus icon" icon="bookmark" raised></x-m2.button>
+```html
+<x-m2.button label="Text button" />
+<x-m2.button label="Text button plus icon" icon="bookmark" />
+<x-m2.button label="Outlined button" outlined />
+<x-m2.button label="Outlined button plus icon" icon="bookmark" />
+<x-m2.button label="Contained button" raised />
+<x-m2.button label="Contained button plus icon" icon="bookmark" raised />
 ```
 
 ## Attributes
