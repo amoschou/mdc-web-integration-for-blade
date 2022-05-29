@@ -5,7 +5,7 @@
 @endphp
 
 <x-form-field :label="$formField_label" :id="$formField_id" :align-end="$formField_alignEnd">
-    <x-radio {{ $attributes->except(['label', 'id', 'align-end']) }}></x-radio>
+    <x-radio {{ $attributes->except(['label', 'id', 'align-end']) }} />
 </x-form-field>
 
 @push('post-mdc-auto-init-js')

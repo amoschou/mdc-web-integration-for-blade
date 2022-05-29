@@ -1,6 +1,6 @@
 @props([
     'align-end' => false,
-    'label' => '',
+    'label' => null,
     'id' => Str::uuid(),
     'wrapped-switch' => false,
 ])
@@ -13,6 +13,7 @@
 
     $wrappedSwitch = filter_var($wrappedSwitch, FILTER_VALIDATE_BOOLEAN);
     $hasWrappedSwitch = $wrappedSwitch;
+    $hasLabel = ! is_null($label);
 
     $componentAttributes = $attributes->merge([
         'id' => $formFieldHasId ? $id : false,
@@ -38,7 +39,7 @@
     @else
         {{ $slot }}
     @endif
-    <label {{ $labelAttributes }}>{{ $label }}</label>
+    @if ($hasLabel) <label {{ $labelAttributes }}>{{ $label }}</label> @endif
 </div>
 
 
