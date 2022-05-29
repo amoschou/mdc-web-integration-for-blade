@@ -1,19 +1,23 @@
 @props([
-    'label',
-    'secondary',
+    'label' => '',
+    'secondary' => false,
+    'prominent' => false,
 ])
 
 @php
-    $label = (string) ($label ?? null);
-    $secondary = filter_var($secondary ?? null, FILTER_VALIDATE_BOOLEAN);
+    $secondary = filter_var($secondary, FILTER_VALIDATE_BOOLEAN);
+    $prominent = filter_var($prominent, FILTER_VALIDATE_BOOLEAN);
 
     $isPrimary = ! $secondary;
     $isSecondary = $secondary;
 
     $class = $isSecondary ? 'mdc-banner__secondary-action' : 'mdc-banner__primary-action';
+
+    $class = Arr::toCssClasses([
+        'mdc-button',
+        'mdc-banner__primary-action' => $isPrimary,
+        'mdc-banner__secondary-action' => $isSecondary,
+    ]);
 @endphp
 
-<button type="button" class="mdc-button {{ $class }}">
-    <div class="mdc-button__ripple"></div>
-    <div class="mdc-button__label">{{ $label }}</div>
-</button>
+<x-button type="button" class="{{ $class }}" no-touch-target no-focus-ring label="{{ $label }}" ></x-button>

@@ -2,17 +2,17 @@
     'align-end' => false,
     'label' => '',
     'id' => Str::uuid(),
-    'wrapped-slot' => false,
+    'wrapped-switch' => false,
 ])
 
 @php
-    foreach (['align-end', 'wrapped-slot'] as $kebabString) { ${Str::camel($kebabString)} = $$kebabString; unset($$kebabString); }
+    foreach (['align-end', 'wrapped-switch'] as $kebabString) { ${Str::camel($kebabString)} = $$kebabString; unset($$kebabString); }
 
     $formFieldHasId = strlen($id) > 0;
     $isAlignedEnd = $alignEnd;
 
-    $wrappedSlot = filter_var($wrappedSlot, FILTER_VALIDATE_BOOLEAN);
-    $hasWrappedSlot = $wrappedSlot;
+    $wrappedSwitch = filter_var($wrappedSwitch, FILTER_VALIDATE_BOOLEAN);
+    $hasWrappedSwitch = $wrappedSwitch;
 
     $componentAttributes = $attributes->merge([
         'id' => $formFieldHasId ? $id : false,
@@ -33,12 +33,10 @@
 @endphp
 
 <div {{ $componentAttributes }}>
-    @if ($hasWrappedSlot)
-        <div style="height: 48px; display: flex; justify-content: left; align-items: center; margin-left:2px; margin-right: 10px;">
-    @endif
-            {{ $slot }}
-    @if ($hasWrappedSlot)
-        </div>
+    @if ($hasWrappedSwitch)
+        <div style="height: 20px; padding: 10px 2px; margin: 4px; display: flex; justify-content: left; align-items: center;">{{ $slot }}</div>
+    @else
+        {{ $slot }}
     @endif
     <label {{ $labelAttributes }}>{{ $label }}</label>
 </div>

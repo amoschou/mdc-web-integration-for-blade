@@ -1,20 +1,9 @@
 # Checkbox
 
-    'no-touch-target',
-    'no-touch-target-wrapper',
-    'disabled',
-    'indeterminate',
-    'checked',
-    'no-js',
-    'no-focus-ring',
-    'name',
-    'value',
-
-
 ## Use
 
 ```
-<x-m2.checkbox
+<x-checkbox
     no-touch-target
     no-touch-target-wrapper
     disabled
@@ -25,19 +14,19 @@
     name=""
     value=""
 >
-</x-m2.button>
+</x-button>
 ```
 
 ## Examples
 
 ```
-<x-m2.checkbox></x-m2.checkbox>
+<x-checkbox></x-checkbox>
 
-<x-m2.checkbox></x-m2.checkbox>
+<x-checkbox checked></x-checkbox>
 
-<x-m2.checkbox></x-m2.checkbox>
+<x-checkbox indeterminate></x-checkbox>
 
-<x-m2.checkbox></x-m2.checkbox>
+<x-checkbox disabled></x-checkbox>
 ```
 
 ## Attributes
@@ -67,7 +56,7 @@ Only one or none of `checked` or `indeterminate` can be set.
 
 To include a label, wrap the checkbox in a form-field (Include `input-id` attribute to link label and checkbox together:
 ```
-<x-m2.form-field label="Checkbox one" input-id="checkbox-1">
-    <x-m2.checkbox checked></x-m2.checkbox>
-</x-m2.form-field>
+<x-form-field label="Checkbox one" input-id="checkbox-1">
+    <x-checkbox checked></x-checkbox>
+</x-form-field>
 ```

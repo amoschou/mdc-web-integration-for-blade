@@ -79,9 +79,9 @@ data-mdc-auto-init="MDCRipple"
 @if (! is_null($start))
     <span class="mdc-list-item__start">
         @if ($hasLeadingControl)
-            @if ($control === 'checkbox') <x-m2.checkbox no-touch-target-wrapper></x-m2.checkbox> @endif
-            @if ($control === 'radio') <x-m2.radio no-touch-target-wrapper></x-m2.radio> @endif
-            @if ($control === 'switch') <x-m2.switch></x-m2.switch> @endif
+            @if ($control === 'checkbox') <x-checkbox no-touch-target-wrapper></x-checkbox> @endif
+            @if ($control === 'radio') <x-radio no-touch-target-wrapper></x-radio> @endif
+            @if ($control === 'switch') <x-switch></x-switch> @endif
         @else
             {{ $leadingSlot }}
         @endif
@@ -95,9 +95,9 @@ data-mdc-auto-init="MDCRipple"
 @if (! is_null($end))
     <span class="mdc-list-item__end">
         @if ($hasTrailingControl)
-            @if ($control === 'checkbox') <x-m2.checkbox></x-m2.checkbox> @endif
-            @if ($control === 'radio') <x-m2.radio></x-m2.radio> @endif
-            @if ($control === 'switch') <x-m2.switch></x-m2.switch> @endif
+            @if ($control === 'checkbox') <x-checkbox></x-checkbox> @endif
+            @if ($control === 'radio') <x-radio></x-radio> @endif
+            @if ($control === 'switch') <x-switch></x-switch> @endif
         @else
             {{ $trailingSlot }}
         @endif
