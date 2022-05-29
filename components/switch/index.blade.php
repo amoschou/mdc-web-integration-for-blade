@@ -1,29 +1,29 @@
 @props([
-    'disabled', // MDCSwitch property
-    'selected', // MDCSwitch property
-    'label',
-    'id',
+    'disabled' => false, // MDCSwitch property
+    'selected' => false, // MDCSwitch property
+    'label' => null,
+    'id' => Str::uuid(),
+    'js-handle' => null,
 ])
 
 @php
-    $disabled = (boolean) ($disabled ?? false);
-    $selected = (boolean) ($selected ?? false);
-    $label = (string) ($label ?? null);
-    $hasLabel = strlen((string) $label) > 0;
-
-    $id = $id ?? Str::uuid();
+    $disabled = filter_var($disabled, FILTER_VALIDATE_BOOLEAN);
+    $selected = filter_var($selected, FILTER_VALIDATE_BOOLEAN);
+    $hasLabel = ! is_null($label);
+    $isDisabled = $disabled;
+    $isSelected = $selected;
+    $jsHandle = ${'js-handle'}; unset(${'js-handle'});
+    $hasJsHandle = ! is_null($jsHandle);
 @endphp
-
-
 
 <button
     id="{{ $id }}"
-    class="mdc-switch @if ($selected) mdc-switch--selected @else mdc-switch--unselected @endif"
+    class="mdc-switch @if ($isSelected) mdc-switch--selected @else mdc-switch--unselected @endif"
     type="button"
     role="switch"
-    @if ($selected) aria-checked="true" @else aria-checked="false" @endif
+    @if ($isSelected) aria-checked="true" @else aria-checked="false" @endif
     data-mdc-auto-init="MDCSwitch"
-    @if ($disabled) disabled @endif
+    @if ($isDisabled) disabled @endif
 >
     <div class="mdc-switch__track"></div>
     <div class="mdc-switch__handle-track">
@@ -47,3 +47,11 @@
     </span>
 </button>
 @if ($hasLabel) <label for="{{ $id }}">{{ $label }}</label> @endif
+
+@push('post-mdc-auto-init-js')
+    @if ($hasJsHandle)
+        const {{ $jsHandle }} = document.getElementById('{{ $id }}').MDCSwitch;
+    @endif
+    document.getElementById('{{ $id }}').MDCSwitch.selected = {{ $isSelected ? 'true' : 'false' }};
+    document.getElementById('{{ $id }}').MDCSwitch.disabled = {{ $isDisabled ? 'true' : 'false' }};
+@endpush
