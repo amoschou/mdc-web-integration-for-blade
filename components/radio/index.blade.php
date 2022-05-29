@@ -1,12 +1,13 @@
 @props([
-    'no-touch-target' => false, // tick
-    'no-touch-target-wrapper' => false, // tick
     'disabled' => false, // tick // MDCRadio property
     'checked' => false, // tick // MDCRadio property
-    'no-js' => false, // tick
-    'no-focus-ring' => false, // tick
     'name' => false, // tick
     'value' => false, // tick // MDCRadio property
+    'no-touch-target' => false, // tick
+    'no-touch-target-wrapper' => false, // tick
+    'no-js' => false, // tick
+    'no-focus-ring' => false, // tick
+    'js-handle' => null,
 ])
 
 @aware([
@@ -19,6 +20,7 @@
         'no-touch-target-wrapper',
         'no-js',
         'no-focus-ring',
+        'js-handle',
     ] as $kebabString) { ${Str::camel($kebabString)} = $$kebabString; unset($$kebabString); }
 
     // VALIDATE INPUTS
@@ -40,6 +42,8 @@
     $isChecked = $checked;
     $hasName = ! is_null($name);
     $hasValue = ! is_null($value);
+
+    $hasJsHandle = ! is_null($jsHandle);
 
     // BUILD ATTRIBUTES
     $componentAttributes = $attributes->merge(array_merge(
@@ -83,6 +87,13 @@
 @endif
 
 @push('post-mdc-auto-init-js')
+    @if ($hasJsHandle)
+        const {{ $jsHandle }} = document.getElementById('{{ $id }}').MDCRadio;
+    @endif
+    document.getElementById('{{ $id }}').MDCRadio.checked = {{ $isChecked ? 'true' : 'false' }};
+    document.getElementById('{{ $id }}').MDCRadio.disabled = {{ $isDisabled ? 'true' : 'false' }};
+    @if ($hasValue) document.getElementById('{{ $id }}').MDCRadio.value = {{ $value }}; @endif
 @endpush
+
 
 
