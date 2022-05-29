@@ -24,14 +24,15 @@
 
 ## Attributes
 
-| Name            | Type           | Default value  | Mandatory | Description                                                                                                      |
-|-----------------|----------------|----------------|-----------|------------------------------------------------------------------------------------------------------------------|
-| `indeterminate` | boolean        | `false`        | no        | When `true`, the linear progress indicator will be in an indeterminate state.                                    |
-| `closed`        | boolean        | `false`        | no        | When true, the linear progress indicator will be hidden.                                                         |
-| `label`         | string         | `null`         | no        | When present, sets the `aria-label`.                                                                             |
- | `now`           | numeric string | `"0"`          | no        | A numeric value between 0 and 1 indicating the progress value. For indeterminate indicators, this has no effect. | 
-| `rtl`           | boolean        | `false`        | no        | When true, the linear progress will be displayed right to left                                                   |
-| `js-handle`     | string         | null           | no        | If present, defines the Javascript variable name that can be used for the component.   |
+| Name            | Type           | Default value | Mandatory | Description                                                                                                |
+|-----------------|----------------|---------------|-----------|------------------------------------------------------------------------------------------------------------|
+| `indeterminate` | boolean        | `false`       | no        | When `true`, the linear progress indicator will be in an indeterminate state.                              |
+| `closed`        | boolean        | `false`       | no        | When true, the linear progress indicator will be hidden.                                                   |
+| `label`         | string         | `null`        | no        | When present, sets the `aria-label`.                                                                       |
+| `now`           | numeric string | `"0.0"`       | no        | A numeric value between 0 and 1 indicating the progress value. *For determiante progress indicators only.* | 
+| `buffer`        | numeric string | `"1.0"`       | no        | A numeric value between 0 and 1 indicating the buffer value. *For determiante progress indicators only.*   | 
+| `rtl`           | boolean        | `false`       | no        | When true, the linear progress will be displayed right to left                                             |
+| `js-handle`     | string         | null          | no        | If present, defines the Javascript variable name that can be used for the component.                       |
 
 ## Javascript 
 
