@@ -7,18 +7,21 @@
     'js-handle' => null,
     'id' => Str::uuid(),
     'buffer' => '1',
+    'no-init' => false,
 ])
 
 @php
     $indeterminate = filter_var($indeterminate, FILTER_VALIDATE_BOOLEAN);
     $closed = filter_var($closed, FILTER_VALIDATE_BOOLEAN);
     $rtl = filter_var($rtl, FILTER_VALIDATE_BOOLEAN);
+    $noInit = filter_var(${'no-init'}, FILTER_VALIDATE_BOOLEAN); unset(${'no-init'});
     $jsHandle = ${'js-handle'}; unset(${'js-handle'});
 
     $isIndeterminate = $indeterminate;
     $isClosed = $closed;
     $isRtl = $rtl;
     $hasJsHandle = ! is_null($jsHandle);
+    $isInit = ! $noInit;
 
     $attributes = $attributes->merge([
         'role' => 'progressbar',
@@ -31,7 +34,7 @@
         'aria-valuemin' => '0',
         'aria-valuemax' => '1',
         'aria-valuenow' => $now,
-        'data-mdc-auto-init' => 'MDCLinearProgress',
+        'data-mdc-auto-init' => $isInit ? 'MDCLinearProgress' : false,
         'dir' => $isRtl ? 'rtl' : false,
         'id' => $id,
     ]);
@@ -55,15 +58,17 @@
 </div>
 
 @push('post-mdc-auto-init-js')
-    document.getElementById('{{ $id }}').MDCLinearProgress.determinate = {{ $isIndeterminate ? 'false' : 'true' }};
-    document.getElementById('{{ $id }}').MDCLinearProgress.progress = {{ $now }};
-    document.getElementById('{{ $id }}').MDCLinearProgress.buffer = {{ $buffer }};
-    @if ($isClosed)
-        document.getElementById('{{ $id }}').MDCLinearProgress.close();
-    @else
-        document.getElementById('{{ $id }}').MDCLinearProgress.open();
-    @endif
-    @if ($hasJsHandle)
-        const {{ $jsHandle }} = document.getElementById('{{ $id }}').MDCLinearProgress;
+    @if (! $noInit)
+        document.getElementById('{{ $id }}').MDCLinearProgress.determinate = {{ $isIndeterminate ? 'false' : 'true' }};
+        document.getElementById('{{ $id }}').MDCLinearProgress.progress = {{ $now }};
+        document.getElementById('{{ $id }}').MDCLinearProgress.buffer = {{ $buffer }};
+        @if ($isClosed)
+            document.getElementById('{{ $id }}').MDCLinearProgress.close();
+        @else
+            document.getElementById('{{ $id }}').MDCLinearProgress.open();
+        @endif
+        @if ($hasJsHandle)
+            const {{ $jsHandle }} = document.getElementById('{{ $id }}').MDCLinearProgress;
+        @endif
     @endif
 @endpush

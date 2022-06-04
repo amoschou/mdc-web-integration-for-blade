@@ -36,28 +36,30 @@
 
     $id = Str::uuid();
     $htmlFieldset = $attributes->has('href') ? 'a' : 'button';
+
+    $attributes = $attributes->merge([
+        'class' => 'mdc-icon-button material-icons',
+        'data-mdc-auto-init' => $hasRipple ? 'MDCRipple' : false,
+        'aria-label' => $hasAriaLabel ? $ariaLabel : false,
+        'id' => $id,
+    ]);
 @endphp
 
 @if ($hasTouchTargetWrapper)
     <div class="mdc-touch-target-wrapper">
 @endif
-    <{{ $htmlFieldset }}
-        class="mdc-icon-button material-icons"
-        @if ($hasRipple) data-mdc-auto-init="MDCRipple" @endif
-        @if ($hasAriaLabel) aria-label="{{ $ariaLabel }}" @endif
-        id="{{ $id }}"
-    >
+    <{{ $htmlFieldset }} {{ $attributes }}>
         <div class="mdc-icon-button__ripple"></div>
         @if ($hasFocusRing) <span class="mdc-icon-button__focus-ring"></span> @endif
         {{ $icon }}
-        @if ($hasTouchTarget) <span class="mdc-button__touch"></span> @endif
+        @if ($hasTouchTarget) <span class="mdc-icon-button__touch"></span> @endif
     </{{ $htmlFieldset }}>
 @if ($hasTouchTargetWrapper)
     </div>
 @endif
 
-[aria-label is: {{ var_dump($ariaLabel) }}]
-
 @push('post-mdc-auto-init-js')
-    document.getElementById('{{ $id }}').MDCRipple.unbounded = true;
+    @if ($hasRipple)
+        document.getElementById('{{ $id }}').MDCRipple.unbounded = true;
+    @endif
 @endpush

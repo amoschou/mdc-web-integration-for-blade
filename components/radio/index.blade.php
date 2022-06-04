@@ -8,6 +8,7 @@
     'no-js' => false, // tick
     'no-focus-ring' => false, // tick
     'js-handle' => null,
+    'no-ripple' => false,
 ])
 
 @aware([
@@ -21,6 +22,7 @@
         'no-js',
         'no-focus-ring',
         'js-handle',
+        'no-ripple',
     ] as $kebabString) { ${Str::camel($kebabString)} = $$kebabString; unset($$kebabString); }
 
     // VALIDATE INPUTS
@@ -30,6 +32,7 @@
     $checked = filter_var($checked, FILTER_VALIDATE_BOOLEAN);
     $noJs = filter_var($noJs, FILTER_VALIDATE_BOOLEAN);
     $noFocusRing = filter_var($noFocusRing, FILTER_VALIDATE_BOOLEAN);
+    $noRipple = filter_var($noRipple, FILTER_VALIDATE_BOOLEAN);
     abort_unless(strlen($id) > 0, 500, "Bad id for radio.");
     // abort_unless(strlen($inputId) > 0, 500);
 
@@ -42,6 +45,7 @@
     $isChecked = $checked;
     $hasName = ! is_null($name);
     $hasValue = ! is_null($value);
+    $hasRipple = ! $noRipple;
 
     $hasJsHandle = ! is_null($jsHandle);
 
@@ -79,7 +83,7 @@
                 <div class="mdc-radio__outer-circle"></div>
                 <div class="mdc-radio__inner-circle"></div>
             </div>
-            <div class="mdc-radio__ripple"></div>
+            @if ($hasRipple) <div class="mdc-radio__ripple"></div> @endif
             @if ($hasFocusRing) <div class="mdc-radio__focus-ring"></div> @endif
         </div>
 @if ($hasTouchTargetWrapper)
@@ -87,12 +91,14 @@
 @endif
 
 @push('post-mdc-auto-init-js')
-    @if ($hasJsHandle)
-        const {{ $jsHandle }} = document.getElementById('{{ $id }}-radio').MDCRadio;
+    @if ($usesJavascript)
+        @if ($hasJsHandle)
+            const {{ $jsHandle }} = document.getElementById('{{ $id }}-radio').MDCRadio;
+        @endif
+        document.getElementById('{{ $id }}-radio').MDCRadio.checked = {{ $isChecked ? 'true' : 'false' }};
+        document.getElementById('{{ $id }}-radio').MDCRadio.disabled = {{ $isDisabled ? 'true' : 'false' }};
+        @if ($hasValue) document.getElementById('{{ $id }}-radio').MDCRadio.value = '{{ $value }}'; @endif
     @endif
-    document.getElementById('{{ $id }}-radio').MDCRadio.checked = {{ $isChecked ? 'true' : 'false' }};
-    document.getElementById('{{ $id }}-radio').MDCRadio.disabled = {{ $isDisabled ? 'true' : 'false' }};
-    @if ($hasValue) document.getElementById('{{ $id }}-radio').MDCRadio.value = '{{ $value }}'; @endif
 @endpush
 
 
